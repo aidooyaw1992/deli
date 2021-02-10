@@ -31,10 +31,9 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) => state.maybeWhen(
         loading: () => showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => LoadingDialog()
-        ),
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => LoadingDialog()),
         error: (error) {
           switch (error.appErrorType) {
             case AppErrorType.timeout:
@@ -48,6 +47,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     icon: Icons.wifi,
                     title: "Connection Time out",
                     content: "Connection has timed out",
+                    onRetryPressed: () {
+                        Navigator.pop(context);
+                        _cubit.login(email: null, password: null);
+                      }
                   );
                 },
               );
@@ -57,12 +60,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 context: context,
                 barrierDismissible: false,
                 builder: (BuildContext dialogContext) {
-                  return ErrorAlertDialog(
-                    context: context,
-                    icon: Icons.error,
-                    title: "Api Error occurred",
-                    content: "${error.message}",
-                  );
+                  return ConnectionErrorDialog(
+                      context: context,
+                      icon: Icons.wifi,
+                      title: "Internet Connection Error",
+                      content: "Kindly check your internet and try again",
+                      onRetryPressed: () {
+                        Navigator.pop(context);
+                        _cubit.login(email: null, password: null);
+                      });
                 },
               );
             default:
