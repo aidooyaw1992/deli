@@ -1,11 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:delivast/src/services/api_client.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'profile_cubit.freezed.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  
   ProfileCubit() : super(ProfileState.initial());
 
   logout() async {
