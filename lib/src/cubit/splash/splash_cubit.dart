@@ -19,6 +19,8 @@ class SplashCubit extends Cubit<SplashState> {
       emit(SplashState.success(user));
       return user;
     }
+    //emiting a new User object without any fields,
+    //this is because freezed Splash state cannot receive a null value
     emit(SplashState.success(User()));
   }
 }

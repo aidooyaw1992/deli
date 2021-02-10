@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
         error: (error) {
           switch (error.appErrorType) {
             case AppErrorType.timeout:
-              Navigator.of(context).pop();
+              Navigator.of(context).pop(); // pop off loading dialog
               return showDialog<void>(
                 context: context,
                 barrierDismissible: false,
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
               );
             case AppErrorType.network:
-              Navigator.of(context).pop();
+              Navigator.of(context).pop(); // pop off loading dialog
               return showDialog<void>(
                 context: context,
                 barrierDismissible: false,
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
               );
             default:
-              Navigator.of(context).pop();
+              Navigator.of(context).pop(); // pop off loading dialog
               return showDialog<void>(
                 context: context,
                 barrierDismissible: false,
