@@ -11,7 +11,7 @@ import 'package:delivast/src/services/api_client.dart';
 
 class MyApp extends StatelessWidget {
   final http.Client client;
-  const MyApp( {
+  const MyApp({
     Key key,
     this.client,
   }) : super(key: key);
@@ -20,24 +20,24 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => LoginCubit(client: ApiClient(client))),
-        BlocProvider(
-            create: (context) =>
-                ProfileCubit(client: ApiClient(client))),
+          create: (context) => LoginCubit(client: ApiClient(client)),
+        ),
+        BlocProvider(create: (context) => ProfileCubit()),
         BlocProvider(create: (context) => SplashCubit())
       ],
       child: MaterialApp(
-          title: 'Delivast Demo',
-          theme: ThemeData(
-            primaryColor: AppColors.primaryColor,
-            textTheme: Theme.of(context).textTheme.apply(
-                  bodyColor: AppColors.textColor,
-                  displayColor: AppColors.textColor,
-                ),
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
-          home: SplashScreen()),
+        title: 'Delivast Demo',
+        theme: ThemeData(
+          primaryColor: AppColors.primaryColor,
+          textTheme: Theme.of(context).textTheme.apply(
+                bodyColor: AppColors.textColor,
+                displayColor: AppColors.textColor,
+              ),
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: SplashScreen(),
+      ),
     );
   }
 }

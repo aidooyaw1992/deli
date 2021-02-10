@@ -30,7 +30,7 @@ class SimpleBlocObserver extends BlocObserver {
 }
 void main(){
   Bloc.observer = SimpleBlocObserver();
-  runApp(MyApp(client:http.Client()));
+  runApp(MyApp(client: http.Client()));
 }
 
 

@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 part 'profile_cubit.freezed.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  final ApiClient client;
-  ProfileCubit({@required this.client}) : super(ProfileState.initial());
+  
+  ProfileCubit() : super(ProfileState.initial());
 
   logout() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();

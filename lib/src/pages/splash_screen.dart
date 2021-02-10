@@ -23,24 +23,24 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SplashCubit, SplashState>(
-      listener: (context, state) {
-        return state.maybeWhen(
-            success: (user) {
-              if (user.name != null) {
-                return Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfileScreen(user: user)),
-                  (route) => false,
-                );
-              }
-              return Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
-                (route) => false,
-              );
-            },
-            orElse: () => Container());
-      },
+      listener: (context, state) => state.maybeWhen(
+        success: (user) {
+          if (user.name != null) {
+            return Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProfileScreen(user: user)),
+              (route) => false,
+            );
+          }
+          return Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => LoginScreen()),
+            (route) => false,
+          );
+        },
+        orElse: () => Container(),
+      ),
       child: Scaffold(
         body: Center(
           child: Column(
