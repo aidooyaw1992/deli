@@ -210,7 +210,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 50,
                           child: TextFormField(
                             onTap: () =>
-                                acquirePhone(_phoneController.text).then((value) {
+                                acquirePhone(widget.user.phone).then((value) {
                               if (value != null) {
                                 print("Result: $value");
                                 setState(() {
@@ -328,6 +328,7 @@ class _PhoneNumberDialogState extends State<PhoneNumberDialog> {
   @override
   void initState() {
     number = PhoneNumber(phoneNumber: widget.phoneNumber, isoCode: 'NG');
+    print(number);
     super.initState();
   }
 
@@ -381,9 +382,8 @@ class _PhoneNumberDialogState extends State<PhoneNumberDialog> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 OutlineButton(
-                  child: Text("Cancel"),
-                  onPressed: () => Navigator.pop(context)
-                  ),
+                    child: Text("Cancel"),
+                    onPressed: () => Navigator.pop(context)),
                 SizedBox(width: 10),
                 FlatButton(
                   color: AppColors.primaryColor,
