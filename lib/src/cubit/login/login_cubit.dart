@@ -16,12 +16,11 @@ class LoginCubit extends Cubit<LoginState> {
 
   login({@required String email, @required String password}) async {
     emit(LoginState.loading());
-    await Future.delayed(Duration(seconds: 3));
     final userEither = await client.login(email, password);
     return userEither.fold(
       (error) => emit(LoginState.error(error)),
-      (user) async {
-        _saveUser(user);
+      (user){
+        _saveUser(user); //saving user obj to sharedpreference
         emit(LoginState.success(user));
       },
     );
